@@ -7,6 +7,34 @@
     tools:context=".MainActivity"
     android:background="#706B6B">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundGravity="center">
 
+    <TextView
+        android:id="@+id/tv_name_user"
+        android:text="@string/text"
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+
+
+
+        />
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

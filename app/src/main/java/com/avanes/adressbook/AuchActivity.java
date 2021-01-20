@@ -86,12 +86,16 @@ public class AuchActivity extends AppCompatActivity {
         if (account == null) {
             Log.e("result", "error");
         } else {
-String name_user = account.getDisplayName();
-
+           // Intent intern = new Intent();
+           // intern.putExtra("name_user",account.getDisplayName());
+           //  String name_user = account.getDisplayName();
+//
             Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+
             finish();
             Log.e("result", account.getDisplayName());
+            intent.putExtra("name_user",account.getDisplayName());
+            startActivity(intent);
         }
 
     }

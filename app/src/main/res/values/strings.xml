@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">AdressBook</string>
     <string name="nameApp">Адресная книга</string>
+    <string name="text">text</string>
+    <string name="tv_name_user">tv_name_user</string>
 </resources>
