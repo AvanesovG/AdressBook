@@ -19,9 +19,11 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class AuchActivity extends AppCompatActivity {
-    SignInButton bt_singInButton;
-    GoogleSignInClient googleSignInClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,65 +41,22 @@ public class AuchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_auch);
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
 //----------------------------------------------------------------------
-        bt_singInButton = findViewById(R.id.bt_singInButton);
-
-        // Игициализация для авторизации
-        //Прежде чем писать код, нужно добавить приложение на сайте Google
-        //https://developers.google.com/identity/sign-in/android/start
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
 
 
-        bt_singInButton.setOnClickListener(new View.OnClickListener() {
+        new Timer().schedule(new TimerTask() {
             @Override
-            public void onClick(View v) {
-
-                Intent intent = googleSignInClient.getSignInIntent();
-                startActivityForResult(intent, 100);
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
 
+                startActivity(intent);
+                finish();
+                cancel();
             }
-        });
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        runApp(account);
+        }, 2000, 2000);
+
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.e("result", "result Code" + resultCode);
-        Log.e("result", "request Code" + requestCode);
-        if (requestCode == 100) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                runApp(account);
-            } catch (ApiException e) {
-
-                runApp(null);
-            }
-        }
-    }
-
-    private void runApp(GoogleSignInAccount account) {
-        if (account == null) {
-            Log.e("result", "error");
-        } else {
-           // Intent intern = new Intent();
-           // intern.putExtra("name_user",account.getDisplayName());
-           //  String name_user = account.getDisplayName();
-//
-            Intent intent = new Intent(this, MainActivity.class);
-
-            finish();
-            Log.e("result", account.getDisplayName());
-            intent.putExtra("name_user",account.getDisplayName());
-            startActivity(intent);
-        }
-
-    }
 
 }

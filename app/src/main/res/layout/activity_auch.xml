@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#706B6B">
+    android:background="#2196F3">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -46,6 +46,7 @@
     </ScrollView>
 
     <com.google.android.gms.common.SignInButton
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/bt_singInButton"
         android:layout_width="match_parent"
