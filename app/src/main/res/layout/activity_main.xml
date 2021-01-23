@@ -36,6 +36,17 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/ll_frag_detail_contact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_frag_add_contact"
         android:layout_width="match_parent"
@@ -46,7 +57,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </LinearLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_menu"
@@ -64,6 +74,7 @@
 
 
         </include>
+
 
 
 

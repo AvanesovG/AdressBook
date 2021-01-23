@@ -36,13 +36,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv_name_user, tv_exit, tv_sing_out;
-    LinearLayout ll_bt_top_menu, ll_frag_add_contact;
+    LinearLayout ll_bt_top_menu, ll_frag_add_contact,ll_frag_detail_contact;
     ConstraintLayout cl_menu, cl_panel_find, cl_include_menu;
     ImageView iv_user, iv_bt_find, iv_bt_back, iv_add_contact;
     GoogleSignInClient googleSignInClient;
     TextView tv_add_contact;
     EditText et_find_contact;
     List<ClListContact> listContacts;
+
 
 
     Context context;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 while (cursor.moveToNext()) {
 
 
-                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.RawContacts._ID));
                     String nameUser = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                     String phoneUser = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                     String imgContact = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         String phone = "";
                         while (cursor2.moveToNext()) {
                             //  String NORMALIZED_NUMBER = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
-                            phone = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NORMALIZED_NUMBER));
+                            phone = cursor2.getString(cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                         }
                         Log.e("test", "" + phone);
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         et_find_contact = findViewById(R.id.et_find_contact);
         tv_add_contact = findViewById(R.id.tv_add_contact);
         iv_add_contact = findViewById(R.id.iv_add_contact);
+        ll_frag_detail_contact = findViewById(R.id.ll_frag_detail_contact);
 //------------------------------------------------------------------------
 
         //  Bundle arguments = getIntent().getExtras();

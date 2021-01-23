@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -27,6 +30,7 @@ public class AdapterListContact extends RecyclerView.Adapter<AdapterListContact.
     public class ListHolder extends RecyclerView.ViewHolder {
         TextView rv_tv_number_contact, rv_tv_name_contact;
         ImageView rv_img_list_contact;
+        ConstraintLayout cl_list_contact_item;
 
 
         public ListHolder(@NonNull View itemView) {
@@ -34,6 +38,7 @@ public class AdapterListContact extends RecyclerView.Adapter<AdapterListContact.
             rv_img_list_contact = itemView.findViewById(R.id.rv_img_list_contact);
             rv_tv_name_contact = itemView.findViewById(R.id.rv_tv_name_contact);
             rv_tv_number_contact = itemView.findViewById(R.id.rv_tv_number_contact);
+            cl_list_contact_item = itemView.findViewById(R.id.cl_list_contact_item);
         }
     }
 
@@ -54,6 +59,34 @@ public class AdapterListContact extends RecyclerView.Adapter<AdapterListContact.
         } else {
             Picasso.get().load(list.get(position).img).into(holder.rv_img_list_contact);
         }
+
+        holder.cl_list_contact_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = ((MainActivity) context).getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                FragmentDetalContact fragmentDetalContact = new FragmentDetalContact();
+                fragmentDetalContact.setParam(list.get(position).id,list
+                        .get(position).img,list
+                        .get(position).name,list
+                        .get(position).number);
+
+
+
+
+                ft.replace(R.id.ll_frag_detail_contact, fragmentDetalContact);
+                ft.addToBackStack(null);
+                ft.commit();
+                ((MainActivity) context).ll_frag_detail_contact.setVisibility(View.VISIBLE);
+                ((MainActivity) context).iv_add_contact.setVisibility(View.GONE);
+
+
+
+
+            }
+        });
+
+
     }
 
     @Override
